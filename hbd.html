@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Eman</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#0b0f2f;color:white;overflow-x:hidden;}
+
+/* PAGE CONTENT BLUR */
+#pageContent.blur { filter: blur(5px); transition: filter 0.3s ease; }
+
+/* POPUP */
+#introPopup{
+  position:fixed; top:50%; left:50%;
+  transform:translate(-50%,-50%) scale(0.8);
+  background:#0f2a7a; color:#ffd86b;
+  padding:25px 30px; border-radius:20px; width:350px; max-width:90%;
+  text-align:center; box-shadow:0 8px 30px rgba(0,0,0,0.6); z-index:10000;
+  display:block; opacity:0; animation:popupFadeIn 0.6s forwards;
+}
+@keyframes popupFadeIn{ to {opacity:1; transform:translate(-50%,-50%) scale(1);} }
+#introPopup button{
+  margin-top:15px; padding:12px 20px;
+  background:#ffd86b;color:#0b1b4d;border:none;border-radius:8px;font-weight:bold;cursor:pointer;transition:0.3s;
+}
+#introPopup button:hover{transform:scale(1.05);}
+#popupMessage{font-size:20px;margin-bottom:10px;}
+
+/* HEART PARTICLES */
+.heart{position:fixed;bottom:-10px;font-size:20px;animation:floatUp 5s linear infinite;opacity:0.7;}
+@keyframes floatUp{0%{transform:translateY(0) scale(1);}100%{transform:translateY(-120vh) scale(1.5);}}
+
+/* PERSONAL & MAIN MESSAGES */
+#personalMsg{width:85%;max-width:750px;margin:40px auto;text-align:center;font-size:20px;line-height:1.6;color:#ffe08a;min-height:100px;}
+#mainMessage,#mainMessage2{width:85%;max-width:750px;margin:20px auto;text-align:center;font-size:20px;line-height:1.6;color:#ffe08a;min-height:50px;}
+
+/* CAKE VIDEOS */
+.cake{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:40px;}
+.cake video{border-radius:18px;box-shadow:0 0 22px #ffe699;cursor:pointer;width:300px;height:auto;transition:0.3s;}
+.cake video:hover{transform:scale(1.05);}
+
+/* SLIDESHOW */
+.slideshow{width:90%;max-width:450px;margin:40px auto;position:relative;}
+.slide{display:none;width:100%;height:auto;max-height:420px;object-fit:contain;border-radius:22px;animation:fade 1.5s ease;}
+@keyframes fade{from{opacity:0;}to{opacity:1;}}
+
+/* POLAROID */
+.polaroids{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;margin-top:30px;}
+.polaroid{width:160px;background:white;color:black;padding:10px;padding-bottom:25px;transform:rotate(-3deg);box-shadow:0 4px 15px rgba(0,0,0,0.3);transition:0.3s;}
+.polaroid img{width:100%;border-radius:8px;}
+.polaroid:hover{transform:scale(1.05) rotate(0);}
+
+/* UNIVERSITY MEMORIES SLIDESHOW */
+.memory{
+  width:100%; margin-top:60px; padding:20px; text-align:center; background:#11153c; position:relative;
+}
+.memory h2{font-size:28px;margin-bottom:20px;}
+.memory p{margin-bottom:20px;}
+.memory-slideshow{position:relative;width:90%;max-width:600px;height:400px;margin:20px auto;overflow:hidden;border-radius:12px;}
+.memory-slide{
+  position:absolute; top:0; left:0;
+  width:100%; height:100%; opacity:0; transform:scale(0.95);
+  transition:opacity 0.8s ease, transform 0.8s ease;
+}
+.memory-slide.active{opacity:1; transform:scale(1); z-index:1;}
+.memory-slide img, .memory-slide video{width:100%; height:100%; object-fit:contain; border-radius:12px;}
+
+/* THANK YOU WIDGET */
+#thankYouWidget{
+  position:fixed;bottom:20px;right:20px;width:300px;background:rgba(15,35,90,0.75);backdrop-filter:blur(10px);
+  color:#ffd86b;border-radius:16px;box-shadow:0 8px 25px rgba(0,0,0,0.45);border:1px solid rgba(255,255,255,0.15);
+  overflow:hidden;display:none;animation:fadeIn 1s ease;
+}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+#thankYouHeader{background:rgba(30,60,120,0.8);padding:12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,0.15);}
+#thankYouContent{display:none;padding:15px;text-align:center;}
+#thankYouContent video{border-radius:12px;margin-bottom:10px;width:100%; max-height:200px;}
+#thankYouContent p{margin-top:8px;}
+#toggleThankYou{background:#ffd86b;color:#0b1b4d;border:none;border-radius:6px;padding:5px 10px;font-weight:bold;cursor:pointer;}
+
+/* CONFETTI */
+.confetti{position:fixed;top:-10px;width:10px;height:10px;border-radius:50%;opacity:0.8;animation:confettiFall linear forwards;}
+@keyframes confettiFall{
+  0% {transform:translateY(0) rotate(0deg);}
+  100% {transform:translateY(120vh) rotate(360deg);}
+}
+</style>
+</head>
+<body>
+
+<div id="pageContent" class="blur">
+
+  <div id="personalMsg">
+    Happy Birthday Panda 💛<br>
+    Allah tumko khush rakhe aur koi bhi pareshani na de.<br>
+    Acha sa dulhan mile aur tumhari shadi ho jaye.<br>
+    Aur tum apne bachon ke saath meri shadi par aao.<br>
+    Ameen 💛 Be happy, be successful in your life,<br>
+    always stay the way you are. Remember I will always be with you.<br>
+    Sorry agar kabhi hurt kiya ho. Tumhara din hai, enjoy karo, khush raho!
+  </div>
+
+  <div id="mainMessage"></div>
+  <div id="mainMessage2"></div>
+
+  <!-- CAKE VIDEOS -->
+  <div class="cake">
+    <video class="cakeVid" src="12.mp4" playsinline controls loop></video>
+    <video class="cakeVid" src="16.mp4" playsinline controls loop></video>
+    <video class="cakeVid" src="18.mp4" playsinline controls loop></video>
+  </div>
+
+  <!-- SLIDESHOW -->
+  <div class="slideshow">
+    <img class="slide" src="1.jpg" />
+    <img class="slide" src="2.jpg" />
+    <img class="slide" src="3.jpg" />
+  </div>
+
+  <!-- POLAROID -->
+  <div class="polaroids">
+    <div class="polaroid"><img src="VOJD1652.JPG"><p style="text-align:center;margin-top:8px;">Memory 1</p></div>
+    <div class="polaroid"><img src="7.jpg"><p style="text-align:center;margin-top:8px;">Memory 2</p></div>
+    <div class="polaroid"><img src="5.jpg"><p style="text-align:center;margin-top:8px;">Memory 3</p></div>
+  </div>
+
+  <!-- UNIVERSITY MEMORIES SLIDESHOW -->
+  <div class="memory">
+    <h2>📸 University Memories</h2>
+    <p>These four years wouldn’t have been the same without you.</p>
+    <audio id="memoryAudio" src="Tera Yaar Hoon Main Song Download.mp3" loop></audio>
+    <div class="memory-slideshow">
+      <div class="memory-slide"><img src="11.jpg" /></div>
+      <div class="memory-slide"><video src="UZKF8409.MP4"></video></div>
+      <div class="memory-slide"><img src="9.jpg" /></div>
+      <div class="memory-slide"><video src="VFKO5619.MP4"></video></div>
+      <div class="memory-slide"><img src="4.jpg" /></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- POPUP -->
+<div id="introPopup">
+  <div id="popupMessage">Are you ready, Panda? 💛</div>
+  <button id="startBtn">Click me for your surprise!</button>
+</div>
+
+<!-- THANK YOU WIDGET -->
+<div id="thankYouWidget">
+  <div id="thankYouHeader">
+    <span>💛 Thank You!</span>
+    <button id="toggleThankYou">Open</button>
+  </div>
+  <div id="thankYouContent">
+    <video id="thankVideo" src="WhatsApp Video 2025-11-11 at 21.46.53_4d752700.mp4" controls></video>
+    <p>For watching, smiling, remembering, and being you. 💛</p>
+  </div>
+</div>
+
+<script>
+// HEART PARTICLES
+function hearts(){
+  const heart=document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerText="💛";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.animationDuration=(Math.random()*3+2)+"s";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),5000);
+}
+setInterval(hearts,300);
+
+// ELEMENTS
+const introPopup = document.getElementById('introPopup');
+const startBtn = document.getElementById('startBtn');
+const mainMessage = document.getElementById('mainMessage');
+const mainMessage2 = document.getElementById('mainMessage2');
+const pageContent = document.getElementById('pageContent');
+const cakeVideos = document.querySelectorAll('.cakeVid');
+const memoryAudio = document.getElementById('memoryAudio');
+
+// POPUP CLICK
+startBtn.addEventListener('click', () => {
+  introPopup.style.display = 'none';
+  pageContent.classList.remove('blur');
+  document.getElementById('thankYouWidget').style.display='block';
+
+  // TYPEWRITER MESSAGES
+  const messages=["We have something special for you… 🎂✨","Today is your last birthday in university… 💛"];
+  let idx=0, char=0;
+  function typeWriterMsg(){
+    if(char<messages[idx].length){
+      document.getElementById('popupMessage').innerHTML+=messages[idx].charAt(char);
+      char++;
+      setTimeout(typeWriterMsg,50);
+    } else {
+      idx++; char=0;
+      if(idx<messages.length){
+        setTimeout(()=>{document.getElementById('popupMessage').innerHTML='';typeWriterMsg();},600);
+      } else {
+        const mainMsgs=[
+          "Today is not just another birthday — it’s your last birthday in university life, and that makes it special in ways words can’t describe. 💛",
+          "These four years brought laughter, friendships, memories, late-night talks, deadlines, chai breaks, and countless moments that shaped who we are today. And among all those memories… you are one of the brightest."
+        ];
+        let mIdx=0, mChar=0;
+        function typeMainMsg(){
+          if(mIdx>=mainMsgs.length) return;
+          if(mChar<mainMsgs[mIdx].length){
+            (mIdx===0?mainMessage:mainMessage2).innerHTML+=mainMsgs[mIdx].charAt(mChar);
+            mChar++;
+            setTimeout(typeMainMsg,30);
+          } else { mIdx++; mChar=0; setTimeout(typeMainMsg,600); }
+        }
+        typeMainMsg();
+      }
+    }
+  }
+  typeWriterMsg();
+});
+
+// CLICK CAKE VIDEOS
+cakeVideos.forEach(video => {
+  video.addEventListener('click', function(e){
+    e.stopPropagation();
+    cakeVideos.forEach(v => { if(v!==this){ v.pause(); } });
+    this.muted = false; this.play();
+    if(!memoryAudio.paused){ memoryAudio.pause(); memoryAudio.currentTime=0; }
+  });
+});
+document.body.addEventListener('click', ()=>{ cakeVideos.forEach(v => v.pause()); });
+
+// REGULAR SLIDESHOW
+let index=0;
+function showSlides(){
+  const slides=document.getElementsByClassName("slide");
+  for(let i=0;i<slides.length;i++) slides[i].style.display="none";
+  index++; if(index>slides.length) index=1;
+  slides[index-1].style.display="block";
+  setTimeout(showSlides,2500);
+}
+showSlides();
+
+// UNIVERSITY MEMORIES SLIDESHOW
+let memIndex = 0;
+const memSlides = document.querySelectorAll('.memory-slide');
+function showMemoryFade(){
+  const rect = document.querySelector('.memory').getBoundingClientRect();
+  const inView = rect.top < window.innerHeight && rect.bottom > 0;
+
+  memSlides.forEach(slide=>{
+    slide.classList.remove('active');
+    const vid = slide.querySelector('video');
+    if(vid){ vid.pause(); vid.currentTime = 0; }
+  });
+
+  if(inView){
+    memIndex++; if(memIndex>memSlides.length) memIndex=1;
+    const cur = memSlides[memIndex-1];
+    cur.classList.add('active');
+    const vid = cur.querySelector('video');
+    if(vid) vid.play();
+    if(memoryAudio.paused) memoryAudio.play().catch(()=>{});
+  } else {
+    memoryAudio.pause();
+  }
+
+  setTimeout(showMemoryFade, 2000);
+}
+showMemoryFade();
+
+// THANK YOU TOGGLE
+const toggleBtn=document.getElementById('toggleThankYou');
+const thankContent=document.getElementById('thankYouContent');
+const thankVideo=document.getElementById('thankVideo');
+toggleBtn.addEventListener('click',()=>{
+  if(thankContent.style.display==='none'){
+    thankContent.style.display='block'; 
+    toggleBtn.textContent='Close';
+    memoryAudio.pause();
+    thankVideo.currentTime=0; 
+    thankVideo.play();
+  } else {
+    thankContent.style.display='none'; 
+    toggleBtn.textContent='Open';
+    thankVideo.pause(); 
+    thankVideo.currentTime=0;
+    memoryAudio.play().catch(()=>{});
+  }
+});
+
+// DRAGGING THANK YOU WIDGET
+let isDragging=false, offsetX, offsetY;
+const widget=document.getElementById('thankYouWidget');
+const header=document.getElementById('thankYouHeader');
+header.addEventListener('mousedown',(e)=>{
+  isDragging=true; offsetX=e.clientX-widget.offsetLeft; offsetY=e.clientY-widget.offsetTop;
+  widget.style.cursor='grabbing';
+});
+document.addEventListener('mouseup',()=>{isDragging=false;widget.style.cursor='default';});
+document.addEventListener('mousemove',(e)=>{
+  if(isDragging){
+    let x=e.clientX-offsetX; let y=e.clientY-offsetY;
+    x=Math.max(0,Math.min(window.innerWidth-widget.offsetWidth,x));
+    y=Math.max(0,Math.min(window.innerHeight-widget.offsetHeight,y));
+    widget.style.left=x+'px'; widget.style.top=y+'px';
+  }
+});
+
+// HEARTS
+setInterval(hearts,300);
+</script>
+
+</body>
+</html>
