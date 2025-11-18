@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Birthday Eman</title>
 <style>
+/* --- CSS from your code --- */
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 body{background:#0b0f2f;color:white;overflow-x:hidden;}
 
@@ -91,7 +92,6 @@ body{background:#0b0f2f;color:white;overflow-x:hidden;}
 <body>
 
 <div id="pageContent" class="blur">
-
   <div id="personalMsg">
     Happy Birthday Panda 💛<br>
     Allah tumko khush rakhe aur koi bhi pareshani na de.<br>
@@ -139,7 +139,6 @@ body{background:#0b0f2f;color:white;overflow-x:hidden;}
       <div class="memory-slide"><img src="4.jpg" /></div>
     </div>
   </div>
-
 </div>
 
 <!-- POPUP -->
@@ -181,14 +180,18 @@ const mainMessage2 = document.getElementById('mainMessage2');
 const pageContent = document.getElementById('pageContent');
 const cakeVideos = document.querySelectorAll('.cakeVid');
 const memoryAudio = document.getElementById('memoryAudio');
+const toggleBtn = document.getElementById('toggleThankYou');
+const thankContent = document.getElementById('thankYouContent');
+const thankVideo = document.getElementById('thankVideo');
+const widget = document.getElementById('thankYouWidget');
+const header = document.getElementById('thankYouHeader');
 
 // POPUP CLICK
 startBtn.addEventListener('click', () => {
   introPopup.style.display = 'none';
   pageContent.classList.remove('blur');
-  document.getElementById('thankYouWidget').style.display='block';
+  widget.style.display='block';
 
-  // TYPEWRITER MESSAGES
   const messages=["We have something special for you… 🎂✨","Today is your last birthday in university… 💛"];
   let idx=0, char=0;
   function typeWriterMsg(){
@@ -272,9 +275,6 @@ function showMemoryFade(){
 showMemoryFade();
 
 // THANK YOU TOGGLE
-const toggleBtn=document.getElementById('toggleThankYou');
-const thankContent=document.getElementById('thankYouContent');
-const thankVideo=document.getElementById('thankVideo');
 toggleBtn.addEventListener('click',()=>{
   if(thankContent.style.display==='none'){
     thankContent.style.display='block'; 
@@ -293,8 +293,6 @@ toggleBtn.addEventListener('click',()=>{
 
 // DRAGGING THANK YOU WIDGET
 let isDragging=false, offsetX, offsetY;
-const widget=document.getElementById('thankYouWidget');
-const header=document.getElementById('thankYouHeader');
 header.addEventListener('mousedown',(e)=>{
   isDragging=true; offsetX=e.clientX-widget.offsetLeft; offsetY=e.clientY-widget.offsetTop;
   widget.style.cursor='grabbing';
